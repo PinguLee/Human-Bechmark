@@ -69,6 +69,7 @@
   <script>
     const root = document.getElementById('root');
     const groundBox = document.getElementById('ground-Box');
+    const groundBoxItem = document.querySelector('ground-Box');
     const startBtn = document.getElementById('start-Btn');
     let count = 5;
 
@@ -104,16 +105,18 @@
         if (count > 0) {
           console.log(count--);
         } else {
-          clearInterval(count); 
+          clearInterval(count);
           startBtn.disabled = false;
           document.getElementById('ground-Box').replaceChildren();
         }
       }, 1000);
     });
 
-    groundBox.addEventListener('click', function () {
-      createElements(1);
-    });
+    groundBoxItem.addEventListener('click', function (e) {
+      console.log("currentTarget : ", e.currentTarget);
+      console.log("Target : ", e.target);
+    })
+
   </script>
 </body>
 
