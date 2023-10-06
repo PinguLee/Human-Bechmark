@@ -25,9 +25,20 @@
       background-color: yellow;
       position: absolute;
     }
+    #ground {
+      width: 100vw;
+      height: 70vh;
+      background-color: blueviolet;
+    }
+
     #btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: absolute;
-      bottom: 0;
+      bottom: 100px;
+      left: 50%;
+      transform: translate(-50%, 0%);
     }
     #start {
       width: 300px;
@@ -47,31 +58,33 @@
   </div>
   <script>
     const root = document.getElementById('root');
-    const dotTarget = document.getElementById('dotTarget');
+    const ground = document.getElementById('ground');
+    const start = document.getElementById('start');
     let count = 0;
 
     function dotTargetXY() {
-      let minX = Math.ceil(100);
-      let maxX = Math.floor(document.body.offsetWidth - 100);
-      let minY = Math.ceil(100);
-      let maxY = Math.floor(document.body.offsetHeight - 100);
+      let minX = Math.ceil(10);
+      let maxX = Math.floor(ground.offsetWidth - 10);
+      let minY = Math.ceil(10);
+      let maxY = Math.floor(ground.offsetHeight - 10);
 
-      X = Math.floor(Math.random() * (maxX - minX)) + minX;
-      Y = Math.floor(Math.random() * (maxY - minY)) + minY;
+      let X = Math.floor(Math.random() * (maxX - minX)) + minX;
+      let Y = Math.floor(Math.random() * (maxY - minY)) + minY;
 
       dotTarget.style.left = `${X}px`
       dotTarget.style.top = `${Y}px`
     }
-    let interval = setInterval(dotTargetXY, 1000);
+
+    let interval;
 
     start.addEventListener('click', function() {
-      
+      let dotTarget = document.createElement("div");
     });
 
     dotTarget.addEventListener('click', function() {
-      dotTargetXY(); // 누르면 바로 바뀌게
-      clearInterval(interval); // 바뀌었으니 인터벌 초기화
-      interval = setInterval(dotTargetXY, 1000); // 인터벌 재실행
+      dotTargetXY();
+      clearInterval(interval);
+      interval = setInterval(dotTargetXY, 1000);
     });
   </script>
 </body>
