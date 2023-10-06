@@ -40,48 +40,32 @@
   <script>
     const root = document.getElementById('root');
     const ball = document.getElementById('ball');
+    let count = 0;
 
     function getRandomX() {
-      let min = Math.ceil(0);
-      let max = Math.floor(document.body.offsetWidth);
-      let rt;
-
-      if (max > document.body.offsetWidth - 100) {
-        rt = (Math.floor(Math.random() * (max - min)) + min) - 100;
-      } else {
-        rt = Math.floor(Math.random() * (max - min)) + min;
-      }
-
-      return rt;
+      let min = Math.ceil(100);
+      let max = Math.floor(document.body.offsetWidth - 100);
+      
+      return Math.floor(Math.random() * (max - min)) + min;
     }
     function getRandomY() {
-      let min = Math.ceil(0);
-      let max = Math.floor(document.body.offsetHeight);
-      let rt;
+      let min = Math.ceil(100);
+      let max = Math.floor(document.body.offsetHeight - 100);
 
-      if (max > document.body.offsetHeight - 100) {
-        rt = (Math.floor(Math.random() * (max - min)) + min) - 100;
-      } else {
-        rt = Math.floor(Math.random() * (max - min)) + min;
-      }
-
-      if (max > document.body.offsetHeight - 100) {
-        rt = (Math.floor(Math.random() * (max - min)) + min) - 100;
-      } else {
-        rt = Math.floor(Math.random() * (max - min)) + min;
-      }
-
-      return rt;
+      return Math.floor(Math.random() * (max - min)) + min;
     }
-
-
-
-    console.log(`${getRandomX()}px`);
-    
-    setInterval(function () {
+    function ballXY() {
       ball.style.left = `${getRandomX()}px`
       ball.style.top = `${getRandomY()}px`
-    }, 1000)
+    }
+    let interval = setInterval(ballXY, 1000);
+
+    ball.addEventListener('click', function() {
+      console.log(++count);
+      ballXY();
+      clearInterval(interval);
+      interval = setInterval(ballXY, 1000);
+    })
   </script>
 </body>
 
