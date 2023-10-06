@@ -24,7 +24,7 @@
       background-color: blueviolet;
     }
 
-    #ground-Box > div {
+    #ground-Box>div {
       width: 20px;
       height: 20px;
       border-radius: 50px;
@@ -62,7 +62,7 @@
       <label>점수 : </label>
     </div>
     <div id="btn-Box">
-      
+
       <button id="start-Btn">시작</button>
     </div>
   </div>
@@ -71,16 +71,6 @@
     const groundBox = document.getElementById('ground-Box');
     const startBtn = document.getElementById('start-Btn');
     let count = 5;
-
-    function createElements() {
-      for (let i = 0; i < 3; i++) {
-        let dotTarget = document.createElement("div");
-        dotTarget.setAttribute("class", "dotTarget");
-        document.querySelector("#ground-Box").append(dotTarget);
-        dotTarget.style.left = `${dotTargetX()}px`
-        dotTarget.style.top = `${dotTargetY()}px`
-      }
-    }
 
     function dotTargetX() {
       let minX = Math.ceil(20);
@@ -96,20 +86,28 @@
       return Math.floor(Math.random() * (maxY - minY)) + minY;
     }
 
-    let countInterval = setInterval(function(){
-      
-    }, 1000);
+    function createElements(num) {
+      for (let i = 0; i < num; i++) {
+        let dotTarget = document.createElement("div");
+        dotTarget.setAttribute("class", "dotTarget");
+        document.querySelector("#ground-Box").append(dotTarget);
+        dotTarget.style.left = `${dotTargetX()}px`
+        dotTarget.style.top = `${dotTargetY()}px`
+      }
+    }
 
     startBtn.addEventListener('click', function () {
       startBtn.disabled = true;
-      createElements();
-      interval = setInterval(dotTargetXY, 1000);
+      createElements(3);
+      let countInterval = setInterval(function () {
+        if (countInterval > 0) {
+          console.log(count--);
+        }
+      }, 1000);
     });
 
     groundBox.addEventListener('click', function () {
-      dotTargetXY();
-      clearInterval(interval);
-      interval = setInterval(dotTargetXY, 1000);
+      createElements(1);
     });
   </script>
 </body>
