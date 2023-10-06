@@ -1,11 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #root {
+      width: 100vw;
+      height: 100vh;
+      background-color: bisque;
+    }
+
+    #ball {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      background-color: yellow;
+      position: absolute;
+    }
+  </style>
 </head>
+
 <body>
-  
+  <div id="root">
+    <div id="ball">
+
+    </div>
+    <div id="bottom">
+
+    </div>
+  </div>
+  <script>
+    const root = document.getElementById('root');
+    const ball = document.getElementById('ball');
+
+    function getRandomX() {
+      let min = Math.ceil(0);
+      let max = Math.floor(document.body.offsetWidth);
+      let rt;
+
+      if (max > document.body.offsetWidth - 100) {
+        rt = (Math.floor(Math.random() * (max - min)) + min) - 100;
+      } else {
+        rt = Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      return rt;
+    }
+    function getRandomY() {
+      let min = Math.ceil(0);
+      let max = Math.floor(document.body.offsetHeight);
+      let rt;
+
+      if (max > document.body.offsetHeight - 100) {
+        rt = (Math.floor(Math.random() * (max - min)) + min) - 100;
+      } else {
+        rt = Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      if (max > document.body.offsetHeight - 100) {
+        rt = (Math.floor(Math.random() * (max - min)) + min) - 100;
+      } else {
+        rt = Math.floor(Math.random() * (max - min)) + min;
+      }
+
+      return rt;
+    }
+
+
+
+    console.log(`${getRandomX()}px`);
+    
+    setInterval(function () {
+      ball.style.left = `${getRandomX()}px`
+      ball.style.top = `${getRandomY()}px`
+    }, 1000)
+  </script>
 </body>
+
 </html>
