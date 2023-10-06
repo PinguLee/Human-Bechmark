@@ -18,13 +18,13 @@
       background-color: bisque;
     }
 
-    #ground {
+    #ground-Box {
       width: 100vw;
       height: 70vh;
       background-color: blueviolet;
     }
 
-    #ground>div {
+    #ground-Box > div {
       width: 20px;
       height: 20px;
       border-radius: 50px;
@@ -32,7 +32,7 @@
       position: absolute;
     }
 
-    #btn {
+    #btn-Box {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -51,24 +51,24 @@
 
 <body>
   <div id="root">
-    <div id="ground-box">
+    <div id="ground-Box">
 
     </div>
-    <div id="ranking-box">
+    <div id="ranking-Box">
 
     </div>
-    <div id="count-box">
+    <div id="count-Box">
       <label>제한 시간 : </label>
       <label>점수 : </label>
     </div>
-    <div id="btn">
+    <div id="btn-Box">
       
       <button id="start">시작</button>
     </div>
   </div>
   <script>
     const root = document.getElementById('root');
-    const ground = document.getElementById('ground-box');
+    const ground = document.getElementById('ground-Box');
     const start = document.getElementById('start');
     let count = 0;
     let start_finish = false;
