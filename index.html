@@ -51,14 +51,15 @@
 
 <body>
   <div id="root">
-    <div id="ground">
+    <div id="ground-box">
 
     </div>
-    <div>
+    <div id="ranking-box">
 
     </div>
-    <div>
-      
+    <div id="count-box">
+      <label>제한 시간 : </label>
+      <label>점수 : </label>
     </div>
     <div id="btn">
       
@@ -67,7 +68,7 @@
   </div>
   <script>
     const root = document.getElementById('root');
-    const ground = document.getElementById('ground');
+    const ground = document.getElementById('ground-box');
     const start = document.getElementById('start');
     let count = 0;
     let start_finish = false;
@@ -76,7 +77,7 @@
       for (let i = 0; i < 3; i++) {
         let dotTarget = document.createElement("div");
         dotTarget.setAttribute("class", "dotTarget");
-        document.querySelector("#ground").append(dotTarget);
+        document.querySelector("#ground-box").append(dotTarget);
         dotTarget.style.left = `${dotTargetX()}px`
         dotTarget.style.top = `${dotTargetY()}px`
         start.style.visibility = "hidden";
