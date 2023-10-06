@@ -18,17 +18,18 @@
       background-color: bisque;
     }
 
-    #dotTarget {
-      width: 100px;
-      height: 100px;
-      border-radius: 50px;
-      background-color: yellow;
-      position: absolute;
-    }
     #ground {
       width: 100vw;
       height: 70vh;
       background-color: blueviolet;
+    }
+
+    #ground>div {
+      width: 20px;
+      height: 20px;
+      border-radius: 50px;
+      background-color: yellow;
+      position: absolute;
     }
 
     #btn {
@@ -40,6 +41,7 @@
       left: 50%;
       transform: translate(-50%, 0%);
     }
+
     #start {
       width: 300px;
       height: 100px;
@@ -61,27 +63,41 @@
     const ground = document.getElementById('ground');
     const start = document.getElementById('start');
     let count = 0;
+    let start_finish = false;
 
-    function dotTargetXY() {
+    function dotTargetX() {
       let minX = Math.ceil(10);
       let maxX = Math.floor(ground.offsetWidth - 10);
+
+      return Math.floor(Math.random() * (maxX - minX)) + minX;
+    }
+
+    function dotTargetY() {
       let minY = Math.ceil(10);
       let maxY = Math.floor(ground.offsetHeight - 10);
 
-      let X = Math.floor(Math.random() * (maxX - minX)) + minX;
-      let Y = Math.floor(Math.random() * (maxY - minY)) + minY;
+      return Math.floor(Math.random() * (maxY - minY)) + minY;
+    }
 
-      dotTarget.style.left = `${X}px`
-      dotTarget.style.top = `${Y}px`
+    function dotTargetXY() {
+      dotTarget.style.left = `${dotTargetX()}px`
+      dotTarget.style.top = `${dotTargetY()}px`
     }
 
     let interval;
 
-    start.addEventListener('click', function() {
-      let dotTarget = document.createElement("div");
+    start.addEventListener('click', function () {
+      start_finish = true;
+      for (let i = 0; i < 3; i++) {
+        let dotTarget = document.createElement("div");
+        dotTarget.setAttribute("class", "dotTarget");
+        document.querySelector("#ground").append(dotTarget);
+        dotTarget.style.left = `${dotTargetX()}px`
+        dotTarget.style.top = `${dotTargetY()}px`
+      }
     });
 
-    dotTarget.addEventListener('click', function() {
+    ground.addEventListener('click', function () {
       dotTargetXY();
       clearInterval(interval);
       interval = setInterval(dotTargetXY, 1000);
