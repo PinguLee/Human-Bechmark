@@ -42,7 +42,7 @@
       transform: translate(-50%, 0%);
     }
 
-    #start {
+    #start-Btn {
       width: 300px;
       height: 100px;
     }
@@ -63,50 +63,48 @@
     </div>
     <div id="btn-Box">
       
-      <button id="start">시작</button>
+      <button id="start-Btn">시작</button>
     </div>
   </div>
   <script>
     const root = document.getElementById('root');
-    const ground = document.getElementById('ground-Box');
-    const start = document.getElementById('start');
+    const groundBox = document.getElementById('ground-Box');
+    const startBtn = document.getElementById('start-Btn');
     let count = 0;
-    let start_finish = false;
 
     function createElements() {
       for (let i = 0; i < 3; i++) {
         let dotTarget = document.createElement("div");
         dotTarget.setAttribute("class", "dotTarget");
-        document.querySelector("#ground-box").append(dotTarget);
+        document.querySelector("#ground-Box").append(dotTarget);
         dotTarget.style.left = `${dotTargetX()}px`
         dotTarget.style.top = `${dotTargetY()}px`
-        start.style.visibility = "hidden";
       }
     }
 
     function dotTargetX() {
       let minX = Math.ceil(10);
-      let maxX = Math.floor(ground.offsetWidth - 10);
+      let maxX = Math.floor(groundBox.offsetWidth - 10);
 
       return Math.floor(Math.random() * (maxX - minX)) + minX;
     }
 
     function dotTargetY() {
       let minY = Math.ceil(10);
-      let maxY = Math.floor(ground.offsetHeight - 10);
+      let maxY = Math.floor(groundBox.offsetHeight - 10);
 
       return Math.floor(Math.random() * (maxY - minY)) + minY;
     }
 
     let interval;
 
-    start.addEventListener('click', function () {
-      start.style.visibility = true;
+    startBtn.addEventListener('click', function () {
+      startBtn.style.visibility = hidden;
       createElements();
       interval = setInterval(dotTargetXY, 1000);
     });
 
-    ground.addEventListener('click', function () {
+    groundBox.addEventListener('click', function () {
       dotTargetXY();
       clearInterval(interval);
       interval = setInterval(dotTargetXY, 1000);
