@@ -65,6 +65,17 @@
     let count = 0;
     let start_finish = false;
 
+    function createElements {
+      for (let i = 0; i < 3; i++) {
+        let dotTarget = document.createElement("div");
+        dotTarget.setAttribute("class", "dotTarget");
+        document.querySelector("#ground").append(dotTarget);
+        dotTarget.style.left = `${dotTargetX()}px`
+        dotTarget.style.top = `${dotTargetY()}px`
+        start.style.visibility = "hidden";
+      }
+    }
+
     function dotTargetX() {
       let minX = Math.ceil(10);
       let maxX = Math.floor(ground.offsetWidth - 10);
@@ -88,14 +99,8 @@
 
     start.addEventListener('click', function () {
       start.style.visibility = true;
-      for (let i = 0; i < 3; i++) {
-        let dotTarget = document.createElement("div");
-        dotTarget.setAttribute("class", "dotTarget");
-        document.querySelector("#ground").append(dotTarget);
-        dotTarget.style.left = `${dotTargetX()}px`
-        dotTarget.style.top = `${dotTargetY()}px`
-        start.style.visibility = "hidden";
-      }
+      
+      interval = setInterval(dotTargetXY, 1000);
     });
 
     ground.addEventListener('click', function () {
