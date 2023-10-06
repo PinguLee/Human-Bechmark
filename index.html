@@ -87,13 +87,14 @@
     let interval;
 
     start.addEventListener('click', function () {
-      start_finish = true;
+      start.style.visibility = true;
       for (let i = 0; i < 3; i++) {
         let dotTarget = document.createElement("div");
         dotTarget.setAttribute("class", "dotTarget");
         document.querySelector("#ground").append(dotTarget);
         dotTarget.style.left = `${dotTargetX()}px`
         dotTarget.style.top = `${dotTargetY()}px`
+        start.style.visibility = "hidden";
       }
     });
 
