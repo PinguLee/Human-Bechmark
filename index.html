@@ -60,7 +60,7 @@
       
     </ul>
     <div id="ranking-Box">
-
+      <h1 id="best">베스트 : 0점</h1>
     </div>
     <div id="count-Box">
       <label id="time">제한 시간 : 5초</label>
@@ -78,6 +78,7 @@
     const startBtn = document.getElementById('start-Btn');
     const time = document.getElementById('time');
     const score = document.getElementById('score');
+    const best = document.getElementById('best');
     let count = 0;
     let total = 0;
 
@@ -120,6 +121,7 @@
           time.textContent = "제한 시간 : 5초";
           total = 0;
           time.textContent = "점수 : 0점";
+          if()
         }
       }, 1000);
     });
