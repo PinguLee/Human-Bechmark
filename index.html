@@ -98,10 +98,14 @@
 
     startBtn.addEventListener('click', function () {
       startBtn.disabled = true;
+      count = 5;
       createElements(3);
       let countInterval = setInterval(function () {
-        if (countInterval > 0) {
+        if (count > 0) {
           console.log(count--);
+        } else {
+          clearInterval(count); 
+          startBtn.disabled = false;
         }
       }, 1000);
     });
