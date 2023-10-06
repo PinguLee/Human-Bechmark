@@ -70,7 +70,7 @@
     const root = document.getElementById('root');
     const groundBox = document.getElementById('ground-Box');
     const startBtn = document.getElementById('start-Btn');
-    let count = 0;
+    let count = 5;
 
     function createElements() {
       for (let i = 0; i < 3; i++) {
@@ -96,7 +96,9 @@
       return Math.floor(Math.random() * (maxY - minY)) + minY;
     }
 
-    let interval;
+    let countInterval = setInterval(function(){
+      
+    }, 1000);
 
     startBtn.addEventListener('click', function () {
       startBtn.disabled = true;
