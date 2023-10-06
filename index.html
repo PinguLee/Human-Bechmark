@@ -83,15 +83,15 @@
     }
 
     function dotTargetX() {
-      let minX = Math.ceil(10);
-      let maxX = Math.floor(groundBox.offsetWidth - 10);
+      let minX = Math.ceil(20);
+      let maxX = Math.floor(groundBox.offsetWidth - 20);
 
       return Math.floor(Math.random() * (maxX - minX)) + minX;
     }
 
     function dotTargetY() {
-      let minY = Math.ceil(10);
-      let maxY = Math.floor(groundBox.offsetHeight - 10);
+      let minY = Math.ceil(20);
+      let maxY = Math.floor(groundBox.offsetHeight - 20);
 
       return Math.floor(Math.random() * (maxY - minY)) + minY;
     }
@@ -99,7 +99,7 @@
     let interval;
 
     startBtn.addEventListener('click', function () {
-      startBtn.style.visibility = "hidden";
+      startBtn.disabled = true;
       createElements();
       interval = setInterval(dotTargetXY, 1000);
     });
