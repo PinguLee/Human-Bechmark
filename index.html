@@ -12,6 +12,11 @@
       box-sizing: border-box;
     }
 
+    li {
+      list-style-type: none;
+      list-style: none;
+    }
+
     #root {
       width: 100vw;
       height: 100vh;
@@ -24,7 +29,7 @@
       background-color: blueviolet;
     }
 
-    #ground-Box>div {
+    #ground-Box>li {
       width: 20px;
       height: 20px;
       border-radius: 50px;
@@ -69,7 +74,6 @@
   <script>
     const root = document.getElementById('root');
     const groundBox = document.getElementById('ground-Box');
-    const groundBoxItem = document.querySelector('ground-Box');
     const startBtn = document.getElementById('start-Btn');
     let count = 5;
 
@@ -89,7 +93,7 @@
 
     function createElements(num) {
       for (let i = 0; i < num; i++) {
-        let dotTarget = document.createElement("div");
+        let dotTarget = document.createElement("li");
         dotTarget.setAttribute("class", "dotTarget");
         document.querySelector("#ground-Box").append(dotTarget);
         dotTarget.style.left = `${dotTargetX()}px`
@@ -112,10 +116,13 @@
       }, 1000);
     });
 
+    let groundBoxItem = document.querySelector('ground-Box');
+    console.log(groundBoxItem);
     groundBoxItem.addEventListener('click', function (e) {
+      console.log('a');
       console.log("currentTarget : ", e.currentTarget);
       console.log("Target : ", e.target);
-    })
+    });
 
   </script>
 </body>
