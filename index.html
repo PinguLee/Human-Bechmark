@@ -18,54 +18,61 @@
       background-color: bisque;
     }
 
-    #ball {
+    #dotTarget {
       width: 100px;
       height: 100px;
       border-radius: 50px;
       background-color: yellow;
       position: absolute;
     }
+    #btn {
+      position: absolute;
+      bottom: 0;
+    }
+    #start {
+      width: 300px;
+      height: 100px;
+    }
   </style>
 </head>
 
 <body>
   <div id="root">
-    <div id="ball">
+    <div id="ground">
 
     </div>
-    <div id="bottom">
-
+    <div id="btn">
+      <button id="start">시작</button>
     </div>
   </div>
   <script>
     const root = document.getElementById('root');
-    const ball = document.getElementById('ball');
+    const dotTarget = document.getElementById('dotTarget');
     let count = 0;
 
-    function getRandomX() {
-      let min = Math.ceil(100);
-      let max = Math.floor(document.body.offsetWidth - 100);
+    function dotTargetXY() {
+      let minX = Math.ceil(100);
+      let maxX = Math.floor(document.body.offsetWidth - 100);
+      let minY = Math.ceil(100);
+      let maxY = Math.floor(document.body.offsetHeight - 100);
+
+      X = Math.floor(Math.random() * (maxX - minX)) + minX;
+      Y = Math.floor(Math.random() * (maxY - minY)) + minY;
+
+      dotTarget.style.left = `${X}px`
+      dotTarget.style.top = `${Y}px`
+    }
+    let interval = setInterval(dotTargetXY, 1000);
+
+    start.addEventListener('click', function() {
       
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
-    function getRandomY() {
-      let min = Math.ceil(100);
-      let max = Math.floor(document.body.offsetHeight - 100);
+    });
 
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
-    function ballXY() {
-      ball.style.left = `${getRandomX()}px`
-      ball.style.top = `${getRandomY()}px`
-    }
-    let interval = setInterval(ballXY, 1000);
-
-    ball.addEventListener('click', function() {
-      console.log(++count);
-      ballXY();
-      clearInterval(interval);
-      interval = setInterval(ballXY, 1000);
-    })
+    dotTarget.addEventListener('click', function() {
+      dotTargetXY(); // 누르면 바로 바뀌게
+      clearInterval(interval); // 바뀌었으니 인터벌 초기화
+      interval = setInterval(dotTargetXY, 1000); // 인터벌 재실행
+    });
   </script>
 </body>
 
