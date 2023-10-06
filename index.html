@@ -106,7 +106,7 @@
         } else {
           clearInterval(count); 
           startBtn.disabled = false;
-          document.getElementById('ground-Box').removeChild();
+          document.getElementById('ground-Box').replaceChildren();
         }
       }, 1000);
     });
