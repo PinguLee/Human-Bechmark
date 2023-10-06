@@ -90,16 +90,11 @@
       return Math.floor(Math.random() * (maxY - minY)) + minY;
     }
 
-    function dotTargetXY() {
-      dotTarget.style.left = `${dotTargetX()}px`
-      dotTarget.style.top = `${dotTargetY()}px`
-    }
-
     let interval;
 
     start.addEventListener('click', function () {
       start.style.visibility = true;
-      
+      createElements();
       interval = setInterval(dotTargetXY, 1000);
     });
 
