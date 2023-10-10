@@ -21,6 +21,7 @@
       width: 100vw;
       height: 100vh;
       background-color: bisque;
+      
     }
 
     #ground-Box {
@@ -37,6 +38,13 @@
       position: absolute;
     }
 
+    #box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
     #btn-Box {
       display: flex;
       justify-content: center;
@@ -45,6 +53,14 @@
       bottom: 100px;
       left: 50%;
       transform: translate(-50%, 0%);
+      
+    }
+
+    #count-Box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
 
     #start-Btn {
@@ -57,18 +73,19 @@
 <body>
   <div id="root">
     <ul id="ground-Box">
-      
-    </ul>
-    <div id="ranking-Box">
-      <h1 id="best">베스트 : 0점</h1>
-    </div>
-    <div id="count-Box">
-      <label id="time">제한 시간 : 5초</label>
-      <label id="score">점수 : 0점</label>
-    </div>
-    <div id="btn-Box">
 
-      <button id="start-Btn">시작</button>
+    </ul>
+    <div id="box">
+      <div id="ranking-Box">
+        <h1 id="best">베스트 : 0점</h1>
+      </div>
+      <div id="count-Box">
+        <label id="time">제한 시간 : 5초</label>
+        <label id="score">점수 : 0점</label>
+      </div>
+      <div id="btn-Box">
+        <button id="start-Btn">시작</button>
+      </div>
     </div>
   </div>
   <script>
@@ -81,6 +98,7 @@
     const best = document.getElementById('best');
     let count = 0;
     let total = 0;
+    let bestCount = 0;
 
     function dotTargetX() {
       let minX = Math.ceil(20);
@@ -106,14 +124,26 @@
       }
     }
 
+    let num = 10;
+    function counts() {
+      console.log(num--);
+      document.getElementById('timehow').textContent = `제한 시간 : ${count}초`;
+      if (num < 0) {
+        document.getElementById('timehow').textContent = '종료!';
+      }
+    }
+    
     startBtn.addEventListener('click', function () {
+      test = setInterval(count, 1000);;
       startBtn.disabled = true;
       count = 5;
       createElements(3);
       let countInterval = setInterval(function () {
-        if (count > 0) {
-          time.textContent = `제한 시간 : ${count--}초`;
-        } else {
+        if (bestCount < total) {
+          bestCount = total;
+          best.textContent = `베스트 : ${bestCount}점`;
+        }
+        if (count === 0){
           clearInterval(count);
           startBtn.disabled = false;
           document.getElementById('ground-Box').replaceChildren();
@@ -121,12 +151,18 @@
           time.textContent = "제한 시간 : 5초";
           total = 0;
           time.textContent = "점수 : 0점";
-          if()
+
         }
       }, 1000);
     });
 
-    groundBoxItem.addEventListener('click', function (e) {  
+
+    let playbutton = document.getElementById('playbutton');
+    playbutton.addEventListener('click', function () {
+      test = setInterval(count, 1000);;
+    });
+
+    groundBoxItem.addEventListener('click', function (e) {
       if (e.target !== groundBoxItem) {
         score.textContent = `점수 : ${++total}점`;
         e.target.remove();
